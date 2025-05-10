@@ -1,0 +1,134 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task-01</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #2c3e50;
+      padding: 15px 0;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      z-index: 1000;
+    }
+
+    nav.scrolled {
+      background-color: #1a252f;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 8px 15px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: #3498db;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .section {
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      transition: opacity 1s ease-in-out;
+      opacity: 1;
+    }
+
+    #nature {
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80');
+    }
+
+    #river {
+      background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1350&q=80');
+      opacity: 0;
+    }
+
+    #river.visible {
+      opacity: 1;
+    }
+
+    h1, p {
+      margin: 20px;
+      font-size: 2em;
+      text-shadow: 1px 1px 3px black;
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <ul>
+      <li><a href="#nature">Home</a></li>
+      <li><a href="#river">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="section" id="nature">
+    <h1>Welcome to Nature</h1>
+    <p>Scroll down to see the river</p>
+  </div>
+
+  <div class="section" id="river">
+    <h1>Flowing River</h1>
+    <p>Peaceful and Calm</p>
+  </div>
+
+  <script>
+    const navbar = document.getElementById("navbar");
+    const riverSection = document.getElementById("river");
+
+    window.addEventListener("scroll", () => {
+      // Navbar scroll color effect
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+
+      // Fade-in effect for river
+      const sectionTop = riverSection.getBoundingClientRect().top;
+      const screenHeight = window.innerHeight;
+
+      if (sectionTop < screenHeight * 0.75) {
+        riverSection.classList.add("visible");
+      } else {
+        riverSection.classList.remove("visible");
+      }
+    });
+  </script>
+
+</body>
+</html>
